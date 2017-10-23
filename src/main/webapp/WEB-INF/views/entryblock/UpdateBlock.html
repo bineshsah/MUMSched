@@ -1,15 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8"/>
-    <title>Edit</title>
-  <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>  
-</head>
-<body class="container">
+<html xmlns:th="http://www.thymeleaf.org">
+<!--/* Title of this template will be passed to the head fragment along with custom links and scripts */-->
+<head th:replace="entryblock/layout :: head(~{this :: title}, ~{this :: .custom-link}, ~{this :: .custom-script})">
+    <title>Schedule List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
+    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}"/>
+    
+    <!-- Custom links for this page only -->
+    <link class="custom-link" href="../../../resources/css/task/task.css" th:href="@{/resources/css/task/task.css}" />
+    
+    <script src="../../../resources/js/jquery.min.js" th:src="@{/resources/js/jquery.min.js}"></script>
+    <script src="../../../resources/js/bootstrap.min.js" th:src="@{/resources/js/bootstrap.min.js}"></script>
 
-<h1>Edit Block</h1>
-<br/>
-<div class="with:80%">
+    <!-- Custom scripts for this page only -->
+    <script class="custom-script" src="../../../resources/js/task/task.js" th:src="@{/resources/js/task/task.js}"></script>
+</head>
+<body>
+
+<!--/* The element with breadcrumb class will be passed to the header fragment */-->
+<header th:insert="entryblock/layout :: header(~{ :: .breadcrumb})">
+    <ol class="breadcrumb container">
+        <li><a href="#" th:href="@{/}">Home</a></li>
+        <li><a href="#" th:href="@{/schedule}">Schedule</a></li>
+    </ol>
+</header>
+
+<!--/* Insert content fragment with content of the element with id = 'task-list' */-->
+<div th:insert="entryblock/layout :: content(~{ :: #block-update})">
+ 
+    <div id="block-update">
+   <div class="container">
+    <!-- /* Handle the flash message */-->
+    <th:block th:if="${message != null}">
+        <!-- /* The message code is returned from the @Controller */ -->
+        <div th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
+    </th:block>
+   
+</div>
     <form class="form-horizontal"   th:action="@{/editblock}"  th:object="${block}" method="post">
         <input type="hidden" name="blockID" th:value="*{blockID}" />
         <div class="form-group">
@@ -58,5 +86,8 @@
         </div>
     </form>
 </div>
+</div>
+
+<footer th:replace="entryblock/layout :: footer">Footer</footer>
 </body>
 </html>
