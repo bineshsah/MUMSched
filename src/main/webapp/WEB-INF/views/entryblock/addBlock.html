@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add Block</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+</head>
+<body class="container">
+<br/>
+<h1>Add Block</h1>
+<br/><br/>
+<div class="with:80%">
+    <form class="form-horizontal" action="#" th:action="@{/addnewblock}" th:object="${newBlock}"
+			method="post">
+			<fieldset>
+				<legend>Add New Block</legend>
+
+       <div class="form-group">
+					<label for="entryList" class="col-sm-2 control-label">SelectEntry</label> 
+					<div class="col-sm-10">
+					<select
+						th:field="*{entryName}">
+						<option th:each="entryName : ${entryNameList}" th:value="${entryName}"
+							th:text="${entryName}"></option>
+					</select>
+					</div>
+				</div>
+		<div class="form-group">
+					<label for="blockName" class="col-sm-2 control-label">BlockName</label>
+				<div class="col-sm-10">
+					 <input id="blockName" type="text" th:field="*{blockName}" />
+				</div>
+		</div>
+		<div class="form-group">
+					<label for="FPPNum" class="col-sm-2 control-label">FPPNumber</label>
+				<div class="col-sm-10">
+					<input id="FPPNum" type="text" th:field="*{FPPNum}" placeholder="0"/>
+				</div>
+		</div>
+		<div class="form-group">
+					<label for="MPPNum" class="col-sm-2 control-label">MPPNumber</label> 
+				<div class="col-sm-10">
+					<input id="MPPNum" type="text" th:field="*{MPPNum}" placeholder="0"/>
+				</div>
+		</div>
+		<div class="form-group">
+					<label for="startDate" class="col-sm-2 control-label">StartDate</label> 
+				<div class="col-sm-10">
+					<input id="startDate" type="date" th:field="*{startDate}" />
+				</div>
+		</div>		
+		<div class="form-group">
+					<label for="endDate" class="col-sm-2 control-label">EndDate</label> 
+				<div class="col-sm-10">
+					<input id="endDate" type="date" th:field="*{endDate}" />
+				</div>
+		</div>
+		<div class="form-group">
+            <div class="col-sm-2 control-label">
+                <input type="submit" value="Save" class="btn btn-info" />
+                &nbsp; &nbsp; &nbsp;
+            </div>
+        </div>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>

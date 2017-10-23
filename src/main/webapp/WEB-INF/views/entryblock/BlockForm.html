@@ -1,0 +1,50 @@
+
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+<title>Block Registration Form</title>
+</head>
+<body  class="container">
+<br/>
+<h1>Block Form</h1>
+<br/><br/>
+<div class="with:80%">
+	<form method="get" action="/entry">
+		<button type="submit">Link to Add Entry</button>
+	</form>
+	<br/>
+	<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Entry Name</th>
+			<th>Block Name</th>
+			<th>FPP Number</th>
+			<th>MPP Number</th>
+			<th>BLock Start Date</th>
+			<th>Block End Date</th>
+			<th>Delete</th>
+            <th>Edit</th>
+		</tr>
+		 </thead>
+        <tbody>
+		<tr th:each="block : ${blockList}">
+			<td th:text="${block.entryName}"></td>
+			<td th:text="${block.blockName}"></td>
+			<td th:text="${block.FPPNum}"></td>
+			<td th:text="${block.MPPNum}"></td>
+			<td th:text="${block.startDate}"></td>
+			<td th:text="${block.endDate}"></td>
+			<td><a th:href="@{/deleteblock(blockID=${block.blockID})}">delete</a></td>
+            <td><a th:href="@{/toEditblock(blockID=${block.blockID})}">edit</a></td>
+		</tr>
+		</tbody>
+	</table>	
+	 </div>
+		<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a href="/addBlock" th:href="@{/addBlock}" class="btn btn-info">add</a>
+    </div>
+</div>
+</body>
+</html>

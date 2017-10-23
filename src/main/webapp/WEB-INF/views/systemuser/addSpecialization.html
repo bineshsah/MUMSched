@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>specialization List</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+</head>
+
+<body>
+<div class="col-lg-3" >
+<form action="#" th:action="@{/systemUser/addSpecializationForm}" th:object="${newSpecialization}"
+			method="post">
+       
+    <select>
+					<!-- 	<th:field="*{specialization}"/> -->
+						<option th:each="specialization : ${specializationList}" th:value="${specialization}"
+							th:text="${specialization}"></option>
+					</select>
+    
+    <p>
+				
+				 <button type = "button" class = "btn btn-primary btn-lg">
+      save
+   </button>
+				</p>
+    
+    </form>
+</div>
+</body>
+</html>

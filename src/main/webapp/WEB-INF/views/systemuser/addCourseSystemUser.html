@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>course List</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+</head>
+
+<body>
+	<div class="col-lg-3" th:object="${newcourse}">
+
+
+		<form action="#" th:action="@{/systemUser/addCourseForm/{id}}"
+			th:object="${newCourse}" method="post"> 
+
+
+			<!-- <input type="hidden" name="id" th:field="*{id}" th:value="${id}" ></input> -->
+
+			<!-- <select th:field="*{courses}"> -->
+			<select>
+
+				<!-- <option th:each="course : ${courseList}" th:value="${course.id}"
+					th:text="${course.courseName}"></option> -->
+					
+					<option th:each="course : ${courseList}" th:value="${course}"
+					th:text="${course}"></option>
+			
+			</select>
+
+			<p>
+
+				<button type="button" class="btn btn-primary btn-lg">Add</button>
+			</p>
+
+
+		</form>
+
+
+	</div>
+</body>
+</html>

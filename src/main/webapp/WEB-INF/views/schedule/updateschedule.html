@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--/* Title of this template will be passed to the head fragment along with custom links and scripts */-->
+<head th:replace="task/layout :: head(~{this :: title}, ~{this :: .custom-link}, ~{this :: .custom-script})">
+    <title>Schedule List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
+    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}"/>
+    
+    <!-- Custom links for this page only -->
+    <link class="custom-link" href="../../../resources/css/task/task.css" th:href="@{/resources/css/task/task.css}" />
+    
+    <script src="../../../resources/js/jquery.min.js" th:src="@{/resources/js/jquery.min.js}"></script>
+    <script src="../../../resources/js/bootstrap.min.js" th:src="@{/resources/js/bootstrap.min.js}"></script>
+
+    <!-- Custom scripts for this page only -->
+    <script class="custom-script" src="../../../resources/js/task/task.js" th:src="@{/resources/js/task/task.js}"></script>
+</head>
+<body>
+
+<!--/* The element with breadcrumb class will be passed to the header fragment */-->
+<header th:insert="schedule/layout :: header(~{ :: .breadcrumb})">
+    <ol class="breadcrumb container">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Schedule</a></li>
+    </ol>
+</header>
+
+<!--/* Insert content fragment with content of the element with id = 'task-list' */-->
+<div th:insert="schedule/layout :: content(~{ :: #schedule-update})">
+    <div id="schedule-update">
+    
+       <form action="#" th:action="@{/saveEditSchedule}" th:object="${editSchedule}"
+			method="post">
+			<div id="global">
+			<fieldset >
+				<legend>Update Schedule</legend>
+
+<p>
+					<input id="id"
+						type="hidden" th:field="*{id}" />
+				</p>
+				<p>
+					 <input id="scheduleGeneratedAt"
+						type="hidden" th:field="*{scheduleGeneratedAt}" />
+				</p>
+				<p>
+				
+
+					<label for="entryList">Select Entry : </label> 
+					<select
+						th:field="*{entryName}">
+						<option th:each="entryName : ${entryLists}" th:value="${entryName}"
+							th:text="${entryName}"></option>
+					</select>
+				</p>
+				<p>
+				<select
+						th:field="*{scheduleStatus}">
+						<option th:each="scheduleStatus : ${scheduleStatusLists}" th:value="${scheduleStatus}"
+							th:text="${scheduleStatus}"></option>
+					</select>
+					
+				</p>
+				
+
+				<p>
+					<input id="btnAdd" type="submit" value="Update Schedule" />
+				</p>
+
+			</fieldset>
+			</div>
+		</form>
+    </div>
+</div>
+
+<footer th:replace="schedule/layout :: footer">Footer</footer>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add Course</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+</head>
+<body class="container">
+<br/>
+<h1>Add course</h1>
+<br/><br/>
+<div class="with:80%">
+    <form class="form-horizontal" action="#" th:action="@{/addnewcourse}" th:object="${newCourse}"
+			method="post">
+			<fieldset>
+				<legend>Add New Course</legend>
+			<ul>
+					<li th:each="err : ${#fields.errors('courseCode')}" th:text="${err}" id="red"/>
+					<li th:each="err : ${#fields.errors('courseName')}" th:text="${err}" id="red"/>
+				</ul>
+			
+        <div class="form-group">
+            <label for="courseCode" class="col-sm-2 control-label">Course Code</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="courseCode"  id="courseCode" placeholder="course code" th:field="*{courseCode}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="courseName" class="col-sm-2 control-label" >Course Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="courseName" id="courseName" placeholder="course name" th:field="*{courseName}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="courseArea" class="col-sm-2 control-label">Course Area</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="courseArea"  id="courseArea" placeholder="course area"/>
+            </div>
+        </div>
+       <div class="form-group">
+					<label for="prerequisitecourses" >PreRequisite : </label>
+					 <select  th:field="*{prerequisitecourses[0].courseName}" >
+				        <option th:value="none"></option> 
+						<option th:value="FPP">FPP</option>
+						<option th:value="MPP">MPP</option>
+						<option th:value="Algorithm">Algorithm</option>
+						<option th:value="WAP">WAP</option>
+					</select>
+</div>
+				
+        <div class="form-group">
+            <div class="col-sm-2 control-label">
+                <input type="submit" value="Add course" class="btn btn-info" />
+                &nbsp; &nbsp; &nbsp;
+            </div>
+        </div>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>

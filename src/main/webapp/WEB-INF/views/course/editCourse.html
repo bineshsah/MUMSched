@@ -1,0 +1,44 @@
+
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Add course Form</title>
+<link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
+</head>
+<body>
+<div id="cedit">
+	<form action="#" th:action="@{/addnewcourse}" th:object="${newCourse}"
+		method="post">
+		<input type="hidden" name="id" th:field="*{id}" th:value="${id}" ></input>
+		<fieldset>
+			<legend>update course</legend>
+
+			<p>
+				<label for="courseCode">Course Code : </label> <input
+					id="courseCode" type="text" th:field="*{courseCode}" />
+			</p>
+			<p>
+				<label for="courseName">Course Name : </label> <input
+					id="courseName" type="text" th:field="*{courseName}" />
+			</p>
+			<p>
+				<label for="courseArea">Course Area : </label> <input
+					id="courseArea" type="text" th:field="*{courseArea}" />
+			</p>
+
+			<p>
+				<input id="btnAdd" type="submit" value="update" />
+			</p>
+
+		</fieldset>
+	</form>
+<!-- <form action="#" th:action="@{/addprerequisite(courseName=$(courseName))}" th:object="${newPrerequisiteCourse}"
+		method="get">
+	
+		<p>
+		<input id="btnAdd" type="submit" value="+prerequisite" />
+		</p>
+</form> -->
+</div>
+</body>
+</html>

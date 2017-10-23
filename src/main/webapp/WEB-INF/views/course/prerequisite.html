@@ -1,0 +1,19 @@
+
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Add course Form</title>
+<link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
+</head>
+<body>
+
+	<table class="table table-hover">
+      <tr style="width: 150%;">
+        <th style="width: 30%;">Course Name</th>
+      </tr>
+       <tr th:each="prerequisitecourse : ${prerequistecourselist}">
+		<td th:text="${prerequisitecourse.courseName}"></td> 
+      </tr>  
+    </table>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="../static/css/styles.css" th:href="@{/css/styles.css}"
+	rel="stylesheet" />
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+</head>
+<body>
+	<div >
+			<a href="#" th:href="@{/systemUser/userAddForm}" class="btn btn-info btn-sm">
+          <span class="glyphicon glyphicon-plus-sign"></span> Create New User
+        </a>
+		<div class="container">
+			<h1>User List</h1>
+				<table class="table table-bordered table-striped">
+					<tr>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>User Name</th>
+						<th>Type</th>
+						<th>Action</th>
+					</tr>
+					<tr th:each="systemuser : ${systemuserList}">
+						<td th:text="${systemuser.firstName}"></td>
+						<td th:text="${systemuser.lastName}"></td>
+						<td th:text="${systemuser.userName}"></td>
+						<td th:text="${systemuser.type}"></td>
+						<!-- <td><a
+							th:href="@{systemUser/edit(id=${systemuser.systemuserID})}">update</a>||<a
+							th:href="@{/systemUser/delete(id=${systemuser.systemuserID})}">delete</a></td> -->
+						<td>
+						<div class="dropdown">
+
+							<button type="button" class="btn dropdown-toggle"
+								id="dropdownMenu1" data-toggle="dropdown">
+								Action <span class="caret"></span>
+							</button>
+
+							<ul class="dropdown-menu" role="menu"
+								aria-labelledby="dropdownMenu1">
+								
+								<li role="presentation"><a role="menuitem" tabindex="-1"
+									th:href="@{/systemUser/delete(id=${systemuser.systemuserID})}">Delete</a>
+								</li>
+
+								<li role="presentation"> 
+								<a role="menuitem" tabindex="-1"
+								 th:href="@{/systemUser/edit(id=${systemuser.systemuserID})}">	Edit User </a>
+                                </li>
+     
+                             <li role = "presentation">
+                             <a role="menuitem" tabindex="-1" 
+                             th:href="@{/systemUser/specializationForm(id=${systemuser.systemuserID})}" >
+                              Specialization	</a>
+										</li>
+
+								
+
+								<li role="presentation">
+								<!-- <a role="menuitem" tabindex="-1" 
+								th:href="@{/systemUser/courseFormList/{id}(id=${systemuser.systemuserID})}">Course</a>
+								  -->
+								  <a role="menuitem" tabindex="-1" 
+								th:href="@{/systemUser/courseFormList(id=${systemuser.systemuserID})}">Course</a>
+								 
+								 </li>
+								
+<!-- /
+								<li role="presentation"><a role="menuitem" tabindex="-1"
+								th:href="@{/SystemUser/schedules(id=${schedules.id})}">Schedules</a>
+								</li> -->
+							</ul>
+
+						</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+</body>
+</html>

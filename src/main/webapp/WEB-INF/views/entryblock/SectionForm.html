@@ -1,0 +1,51 @@
+
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+<title>Entry Registration Form</title>
+</head>
+<body  class="container">
+<br/>
+<h1>Section Form</h1>
+<br/><br/>
+<div class="with:80%">
+    <form method="get" action="/block">
+		<button type="submit">Link to Add Block</button>
+	</form>
+	<br/>
+    <table class="table table-hover">
+     <thead>
+      <tr>
+        <th>Entry</th>
+        <th>Block</th>
+        <th>Track</th>
+         <th>Course</th>
+        <th>Faculty</th>
+        <th>Capacity</th>
+        <th>Delete</th>
+        <th>Edit</th>
+      </tr>
+      </thead>
+        <tbody>
+      <tr th:each="section : ${sectionList}">
+        <td th:text="${section.entryName}"></td>
+        <td th:text="${section.blockName}"></td>
+        <td th:text="${section.track}"></td>
+         <td th:text="${section.courseName}"></td>
+        <td th:text="${section.facultyName}"></td>
+        <td th:text="${section.capacity}"></td>
+        <td><a th:href="@{/deleteentry(entryID=${entry.entryID})}">delete</a></td>
+        <td><a th:href="@{/toEdit(entryID=${entry.entryID})}">edit</a></td>
+      </tr>
+       </tbody>
+    </table>
+   </div>
+		<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a href="/addSection" th:href="@{/addSection}" class="btn btn-info">add</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add Entry</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+</head>
+<body class="container">
+<br/>
+<h1>Add Entry</h1>
+<br/><br/>
+<div class="with:80%">
+    <form class="form-horizontal" action="#" th:action="@{/addnewentry}" th:object="${newEntry}"
+			method="post">
+			<fieldset>
+				<legend>Add New Entry</legend>
+			
+        <div class="form-group">
+            <label for="entryName" class="col-sm-2 control-label">EntryName</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="entryName"  id="entryName" placeholder="entryName"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="FPPNum" class="col-sm-2 control-label" >FPPNum</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="FPPNum" id="FPPNum" placeholder="0"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="MPPNum" class="col-sm-2 control-label">MPPNum</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="MPPNum"  id="MPPNum" placeholder="0"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="startDate" class="col-sm-2 control-label">startDate</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" name="startDate"  id="startDate" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="endDate" class="col-sm-2 control-label">endDate</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" name="endDate"  id="endDate"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 control-label">
+                <input type="submit" value="Save" class="btn btn-info" />
+                &nbsp; &nbsp; &nbsp;
+            </div>
+        </div>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>

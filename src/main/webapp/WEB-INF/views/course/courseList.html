@@ -1,0 +1,79 @@
+
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title></title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" /> 
+ -->
+</head>
+<body>
+
+	<div >
+			 <a href="#" th:href="@{/create}" class="btn btn-info btn-sm">
+          <span class="glyphicon glyphicon-plus-sign"></span> Link to Add Course
+        </a>
+    
+		<br />
+
+		<h2>
+			Course <img th:src="@{/images/listimage.jpg}" height="35px" />
+		</h2>
+
+		<table class="table table-hover">
+			<tr style="width: 150%;">
+				<th style="width: 30%;">Course Name</th>
+				<th style="width: 20%;">Course Code</th>
+				<th style="width: 20%;">Course Area</th>
+				<!-- <th style="width: 20%;">Prerequisite</th> -->
+				<th style="width: 20%;">Action</th>
+
+			</tr>
+			<tr th:each="course : ${courselist}">
+				<td th:text="${course.courseName}"></td>
+				<td th:text="${course.courseCode}"></td>
+				<td th:text="${course.courseArea}"></td> 
+				<!-- td ><a th:href="@{/edit(id=${course.id})}">update</a>||<a th:href="@{/delete(id=${course.id})}" id="red">delete</a></td>  -->
+				<td>
+					<div class="dropdown">
+						<button type="button" class="btn dropdown-toggle"
+							id="dropdownMenu1" data-toggle="dropdown">
+							Action <span class="caret"></span>
+						</button>
+
+						<ul class="dropdown-menu" role="menu"
+							aria-labelledby="dropdownMenu1">
+
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								th:href="@{/edit(id=${course.id})}">Update</a>
+
+							</li>
+
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								th:href="@{/delete(id=${course.id})}">
+									delete </a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								th:href="@{/prerequisiteList(courseName=${course.courseName})}">
+
+									Prerequisite </a></li>
+						</ul>
+
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+</body>
+</html>
