@@ -29,11 +29,11 @@ public class MumSchedService implements UserDetailsService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	@PostConstruct
+	/*@PostConstruct
 	protected void initialize() {
 		save(new MumSchedUser("user", "demo", "ROLE_USER"));
 		save(new MumSchedUser("admin", "admin", "ROLE_ADMIN"));
-	}
+	}*/
 
 	@Transactional
 	public MumSchedUser save(MumSchedUser account) {

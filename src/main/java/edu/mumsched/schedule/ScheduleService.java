@@ -14,11 +14,11 @@ class ScheduleService {
         this.scheduleRepository = scheduleRepository;
     }
 
-    @PostConstruct
+  /*  @PostConstruct
     private void init() {
-        scheduleRepository.save(new Schedule("Oct", "Not automatically generated", "Draft"));
+       // scheduleRepository.save(new Schedule("Oct", "Not automatically generated", "Draft"));
         scheduleRepository.save(new Schedule("Jan", "2017.10.18 15:22:42", "Draft"));
-    }
+    }*/
     @Transactional
 	public void save(Schedule schedule) {
     	scheduleRepository.save(schedule);		
