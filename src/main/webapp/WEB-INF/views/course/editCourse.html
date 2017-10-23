@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <!--/* Title of this template will be passed to the head fragment along with custom links and scripts */-->
-<head th:replace="task/layout :: head(~{this :: title}, ~{this :: .custom-link}, ~{this :: .custom-script})">
+<head th:replace="course/layout :: head(~{this :: title}, ~{this :: .custom-link}, ~{this :: .custom-script})">
     <title>Schedule List</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
@@ -19,16 +19,16 @@
 <body>
 
 <!--/* The element with breadcrumb class will be passed to the header fragment */-->
-<header th:insert="schedule/layout :: header(~{ :: .breadcrumb})">
+<header th:insert="course/layout :: header(~{ :: .breadcrumb})">
     <ol class="breadcrumb container">
         <li><a href="#" th:href="@{/}">Home</a></li>
         <li><a href="#" th:href="@{/}">Edit Course</a></li>
     </ol>
 </header>
 <!--/* Insert content fragment with content of the element with id = 'task-list' */-->
-<div th:insert="schedule/layout :: content(~{ :: #schedule-update})">
+<div th:insert="course/layout :: content(~{ :: #course-update})">
 
-<div id="cedit">
+<div id="course-update">
 	<form action="#" th:action="@{/addnewcourse}" th:object="${newCourse}"
 		method="post">
 		<input type="hidden" name="id" th:field="*{id}" th:value="${id}" ></input>
@@ -58,6 +58,6 @@
 </div>
 
 
-<footer th:replace="schedule/layout :: footer">Footer</footer>
+<footer th:replace="course/layout :: footer">Footer</footer>
 </body>
 </html>

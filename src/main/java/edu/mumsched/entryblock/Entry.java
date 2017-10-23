@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 //import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +30,7 @@ public class Entry {
 	private Date startDate;
 	private Date endDate;
 
-	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "entry")
+	@OneToMany(fetch=FetchType.EAGER,cascade = CascadeType.MERGE, mappedBy = "entry")
 	private Set<Block> blockList = new HashSet<Block>();
 
 	public void addBlock(Block block) {

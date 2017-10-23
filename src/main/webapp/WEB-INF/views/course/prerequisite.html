@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <!--/* Title of this template will be passed to the head fragment along with custom links and scripts */-->
-<head th:replace="task/layout :: head(~{this :: title}, ~{this :: .custom-link}, ~{this :: .custom-script})">
+<head th:replace="course/layout :: head(~{this :: title}, ~{this :: .custom-link}, ~{this :: .custom-script})">
     <title>Schedule List</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
@@ -28,9 +28,10 @@
 <body>
 
 <!--/* Insert content fragment with content of the element with id = 'task-list' */-->
-<div th:insert="schedule/layout :: content(~{ :: #schedule-list})">
+<div th:insert="course/layout :: content(~{ :: #course-prere})">
  
 
+<div id="course-prere">
 
 	<table class="table table-hover">
       <tr style="width: 150%;">
@@ -41,5 +42,9 @@
       </tr>  
     </table>
     </div>
+    </div>
+    
+
+<footer th:replace="schedule/layout :: footer">Footer</footer>
 </body>
 </html>
