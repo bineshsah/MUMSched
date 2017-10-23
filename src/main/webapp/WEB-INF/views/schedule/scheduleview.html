@@ -51,10 +51,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:if="${scheduleGenLists.empty}">
+           <!--  <tr th:if="${scheduleGenLists.empty && scheduleGenLists==null}">
                 <td colspan="4">No schedule</td>
             </tr>
-            <tr th:each="schedule : ${scheduleGenLists}">
+         -->    <tr th:each="schedule : ${scheduleGenLists}">
                 <td th:text="${schedule.blockName}"></td>
                 <td th:text="${schedule.fromDate}">
                    

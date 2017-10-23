@@ -31,12 +31,12 @@ class ScheduleService {
     	return scheduleRepository.findScheduleByEntryName(entryName);
     	
     }
-    public void deleteSchedule(Long id) {
-         scheduleRepository.delete(id);
+    public void deleteSchedule(Long scheduleID) {
+         scheduleRepository.delete(scheduleID);
     }
 
-    public Schedule findOne(Long id) {
-        return scheduleRepository.findOne(id);
+    public Schedule findOne(Long scheduleID) {
+        return scheduleRepository.findOne(scheduleID);
     }
 
 	

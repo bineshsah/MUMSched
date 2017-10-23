@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -15,7 +16,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Schedule{
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Long scheduleID;
 	@NotEmpty
 	private String entryName;
 	
@@ -23,12 +24,10 @@ public class Schedule{
 	
 	private String scheduleStatus;
 	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="schedule")
+	@OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL, mappedBy="schedule")
 	private Set<ScheduleGenerated> genScheduleList=new HashSet<ScheduleGenerated>();
 	
-	public Long getId() {
-		return id;
-	}
+	
 	
 	public void addSchedule(ScheduleGenerated scheduleGenerated) {
 		genScheduleList.add(scheduleGenerated);
@@ -45,6 +44,14 @@ public class Schedule{
 		this.scheduleStatus = scheduleStatus;
 	}
 	
+	public Long getScheduleID() {
+		return scheduleID;
+	}
+
+	public void setScheduleID(Long scheduleID) {
+		this.scheduleID = scheduleID;
+	}
+
 	public Set<ScheduleGenerated> getGenScheduleList() {
 		return genScheduleList;
 	}
@@ -53,9 +60,7 @@ public class Schedule{
 		this.genScheduleList = genScheduleList;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
 	public String getEntryName() {
 		return entryName;
 	}
@@ -77,13 +82,13 @@ public class Schedule{
 	public Schedule createSchedule() {
         return new Schedule(getEntryName(), "automatically generated", "Draft");
 	}
-	 
 
 	@Override
 	public String toString() {
-		return "Schedule [id=" + id + ", entryName=" + entryName + ", scheduleGeneratedAt=" + scheduleGeneratedAt
-				+ ", scheduleStatus=" + scheduleStatus + "]";
+		return "Schedule [scheduleID=" + scheduleID + ", entryName=" + entryName + ", scheduleGeneratedAt="
+				+ scheduleGeneratedAt + ", scheduleStatus=" + scheduleStatus + ", genScheduleList=" + genScheduleList
+				+ "]";
 	}
-	
+	 
 
 }

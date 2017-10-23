@@ -21,8 +21,8 @@
 <!--/* The element with breadcrumb class will be passed to the header fragment */-->
 <header th:insert="schedule/layout :: header(~{ :: .breadcrumb})">
     <ol class="breadcrumb container">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Schedule</a></li>
+        <li><a href="#"th:href="@{/}">Home</a></li>
+        <li><a href="#" th:href="@{/createschedule}">Create Schedule</a></li>
     </ol>
 </header>
 

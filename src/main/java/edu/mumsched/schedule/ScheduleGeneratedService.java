@@ -16,13 +16,14 @@ class ScheduleGeneratedService {
         this.scheduleGenRepository = scheduleGenRepository;
     }
 
-    @PostConstruct
+   /* @PostConstruct
     private void init() {
-    	
-    }
+    //	scheduleGenRepository.save(new ScheduleGenerated("Jan", new Date(), new Date(),"MPP","FPP"));
+    	//scheduleGenRepository.save(new ScheduleGenerated("April", new Date(), new Date(),"MPP","FPP"));
+    }*/
     @Transactional
-	public void save(ScheduleGenerated schedule) {
-    	scheduleGenRepository.save(schedule);		
+	public void save(ScheduleGenerated scheduleGenerated) {
+    	scheduleGenRepository.save(scheduleGenerated);		
 	}
 
     Iterable<ScheduleGenerated> findAll() {
@@ -41,8 +42,11 @@ class ScheduleGeneratedService {
     }
 
 	public void generateScheduleAndSave(Schedule schedule) {		;
-		schedule.addSchedule(scheduleGenRepository.save(new ScheduleGenerated("Jan", new Date(), new Date(),"MPP","FPP")));
-		
+	ScheduleGenerated scheduleGenerated =new ScheduleGenerated("Jan", new Date(), new Date(),"MPP","FPP");
+	System.out.println("generated Schedule goes here "+scheduleGenerated);				
+	schedule.addSchedule(scheduleGenerated);
+	scheduleGenRepository.save(scheduleGenerated);	
+
 	}
    
 }

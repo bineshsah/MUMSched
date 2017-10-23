@@ -1,6 +1,7 @@
 package edu.mumsched.schedule;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -85,6 +86,7 @@ class ScheduleController {
 	@RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
 	public String deleteSchedule(@Valid @PathVariable("id") Long id, Model model, RedirectAttributes ra) {
 		try {
+			System.out.println("Delete ID goes here "+id);
 			scheduleService.deleteSchedule(id);
 			MessageHelper.addSuccessAttribute(ra, "schedule.delete");
 		} catch (Exception e) {
@@ -100,7 +102,7 @@ class ScheduleController {
 		try {
 			Schedule schedule = scheduleService.findOne(id);
 			Schedule scheduleForm = new Schedule();
-			scheduleForm.setId(schedule.getId());
+			scheduleForm.setScheduleID(schedule.getScheduleID());
 			scheduleForm.setEntryName(schedule.getEntryName());
 			scheduleForm.setScheduleGeneratedAt(schedule.getScheduleGeneratedAt());
 			scheduleForm.setScheduleStatus(schedule.getScheduleStatus());
@@ -123,9 +125,9 @@ class ScheduleController {
 			RedirectAttributes ra, Model model) {
 		System.out.println("Schedule update information " + scheduleupdateForm);
 		if (errors.hasErrors()) {
-			return "/updateSchedule/id/+" + scheduleupdateForm.getId();
+			return "/updateSchedule/id/+" + scheduleupdateForm.getScheduleID();
 		}
-		Schedule schedule = scheduleService.findOne(scheduleupdateForm.getId());
+		Schedule schedule = scheduleService.findOne(scheduleupdateForm.getScheduleID());
 		if (schedule == null) {
 			MessageHelper.addErrorAttribute(ra, "schedule.update.error");
 		} else if ((schedule.getEntryName().equals(scheduleupdateForm.getEntryName())
@@ -146,23 +148,34 @@ class ScheduleController {
 		model.addAttribute("schedule", scheduleService.findOne(id));
 		return "schedule/schedule";
 	}
-	@RequestMapping(value = "generateSchedule/{id}", method = RequestMethod.GET)
-	public String generateSchedule(@Valid @PathVariable("id") Long id, Model model, RedirectAttributes ra) {
+	@RequestMapping(value = "generateSchedule/{scheduleID}", method = RequestMethod.GET)
+	public String generateSchedule(@Valid @PathVariable("scheduleID") Long scheduleID, Model model, RedirectAttributes ra) {
 		try {
-			Schedule schedule=scheduleService.findOne(id);
+			System.out.println("id goes here "+scheduleID);
+			Schedule schedule=scheduleService.findOne(scheduleID);
+			System.out.println("Schedule goes here "+schedule.toString());
 			if(schedule!=null){
+				
 				scheduleGenService.generateScheduleAndSave(schedule);
 				
-				model.addAttribute("scheduleGenLists",scheduleGenService.findAll());
+			
 				MessageHelper.addSuccessAttribute(ra, "schedule.gen.message");
 			}
 			
 		} catch (Exception e) {
 			MessageHelper.addErrorAttribute(ra, "schedule.gen.error");
+			e.getMessage();
+			
 		}
 
+		return "redirect:/schedule";
+	}
+	@RequestMapping(value = "viewSchedule/{scheduleID}", method = RequestMethod.GET)
+	public String viewSchedules(Model model,@PathVariable("scheduleID") Long scheduleID) {
+		Schedule schedule=scheduleService.findOne(scheduleID);
+			model.addAttribute("scheduleGenLists",schedule.getGenScheduleList());
 		return "schedule/scheduleview";
 	}
-
+	
 	
 }

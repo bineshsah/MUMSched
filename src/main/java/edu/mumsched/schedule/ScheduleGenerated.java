@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -22,11 +23,16 @@ public class ScheduleGenerated {
 	private Date toDate;
 	private String mppTrack;
 	private String fppTrack;
-	
+
+	@JoinColumn(name="scheduleID",nullable=false)
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Schedule schedule;
 	
 	
+	public ScheduleGenerated() {
+		
+	}
+
 	public ScheduleGenerated(String blockName, Date fromDate, Date toDate, String mppTrack, String fppTrack) {
 		
 		this.blockName = blockName;

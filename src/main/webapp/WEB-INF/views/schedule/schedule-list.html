@@ -21,8 +21,8 @@
 <!--/* The element with breadcrumb class will be passed to the header fragment */-->
 <header th:insert="schedule/layout :: header(~{ :: .breadcrumb})">
     <ol class="breadcrumb container">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Schedule</a></li>
+        <li><a href="#" th:href="@{/}">Home</a></li>
+        <li><a href="#" th:href="@{/schedule}">Schedule</a></li>
     </ol>
 </header>
 
@@ -58,7 +58,7 @@
             <tr th:each="schedule : ${schedules}">
                 <td th:text="${schedule.entryName}"></td>
                 <td>
-                    <a href="#" th:href="@{/schedule/{id}(id=${schedule.id})}" th:text="${schedule.scheduleGeneratedAt}"></a>
+                    <a href="#" th:href="@{/schedule/{id}(id=${schedule.scheduleID})}" th:text="${schedule.scheduleGeneratedAt}"></a>
                 </td>
                 <td th:text="${schedule.scheduleStatus}"></td>
                 <td>  
@@ -70,10 +70,10 @@
 						   </button>
 						   
 						   <ul class = "dropdown-menu" role = "menu">
-						   <li><a href="#" th:href="@{/generateSchedule/{id}(id=${schedule.id})}">Generate Schedule</a></li>
-						      <li><a href="#" th:href="@{/schedule}">View Schedule</a></li>
-						      <li><a href="#" th:href="@{/updateSchedule/{id}(id=${schedule.id})}">Edit</a></li>
-						      <li><a href="#" th:href="@{/delete/{id}(id=${schedule.id})}">Delete</a></li>
+						   <li><a href="#" th:href="@{/generateSchedule/{scheduleID}(scheduleID=${schedule.scheduleID})}">Generate Schedule</a></li>
+						      <li><a href="#" th:href="@{/viewSchedule/{scheduleID}(scheduleID=${schedule.scheduleID})}">View Schedule</a></li>
+						      <li><a href="#" th:href="@{/updateSchedule/{id}(id=${schedule.scheduleID})}">Edit</a></li>
+						      <li><a href="#" th:href="@{/delete/{id}(id=${schedule.scheduleID})}">Delete</a></li>
 						      
 						     
 						   </ul>
