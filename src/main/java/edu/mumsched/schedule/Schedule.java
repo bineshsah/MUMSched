@@ -30,7 +30,7 @@ public class Schedule{
 		return id;
 	}
 	
-	public Schedule(ScheduleGenerated scheduleGenerated) {
+	public void addSchedule(ScheduleGenerated scheduleGenerated) {
 		genScheduleList.add(scheduleGenerated);
 		scheduleGenerated.setSchedule(this);
 	}

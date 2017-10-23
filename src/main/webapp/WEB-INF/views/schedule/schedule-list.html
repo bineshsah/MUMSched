@@ -70,7 +70,7 @@
 						   </button>
 						   
 						   <ul class = "dropdown-menu" role = "menu">
-						   <li><a href="#" th:href="@{/generateSchedule}">Generate Schedule</a></li>
+						   <li><a href="#" th:href="@{/generateSchedule/{id}(id=${schedule.id})}">Generate Schedule</a></li>
 						      <li><a href="#" th:href="@{/schedule}">View Schedule</a></li>
 						      <li><a href="#" th:href="@{/updateSchedule/{id}(id=${schedule.id})}">Edit</a></li>
 						      <li><a href="#" th:href="@{/delete/{id}(id=${schedule.id})}">Delete</a></li>

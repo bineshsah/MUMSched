@@ -18,8 +18,7 @@ class ScheduleGeneratedService {
 
     @PostConstruct
     private void init() {
-    	scheduleGenRepository.save(new ScheduleGenerated("Jan", new Date(), new Date(),"MPP","FPP"));
-    	scheduleGenRepository.save(new ScheduleGenerated("Feb", new Date(), new Date(),"MPP","FPP"));
+    	
     }
     @Transactional
 	public void save(ScheduleGenerated schedule) {
@@ -41,8 +40,8 @@ class ScheduleGeneratedService {
         return scheduleGenRepository.findOne(id);
     }
 
-	public void generateScheduleAndSave(Schedule schedule) {
-		// TODO Auto-generated method stub
+	public void generateScheduleAndSave(Schedule schedule) {		;
+		schedule.addSchedule(scheduleGenRepository.save(new ScheduleGenerated("Jan", new Date(), new Date(),"MPP","FPP")));
 		
 	}
    
