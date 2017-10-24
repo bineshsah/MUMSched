@@ -23,6 +23,7 @@
     <ol class="breadcrumb container">
         <li><a href="#" th:href="@{/}">Home</a></li>
         <li><a href="#" th:href="@{/schedule}">Schedule</a></li>
+        <li><a href="#" th:href="@{/}">Create Block</a></li>
     </ol>
 </header>
 
@@ -39,7 +40,9 @@
    
 </div>
     <form class="form-horizontal" action="#" th:action="@{/addnewblock}" th:object="${newBlock}"
+   <form class="form-horizontal" action="#" th:action="@{/addnewblock}" th:object="${newBlock}"
 			method="post">
+			<div id="global">
 			<fieldset>
 				<legend>Add New Block</legend>
 
@@ -57,30 +60,35 @@
 					<label for="blockName" class="col-sm-2 control-label">BlockName</label>
 				<div class="col-sm-10">
 					 <input id="blockName" type="text" th:field="*{blockName}" />
+					 <input type="text" class="form-control" name="blockName"  id="blockName" placeholder="blockName"/>
 				</div>
 		</div>
 		<div class="form-group">
 					<label for="FPPNum" class="col-sm-2 control-label">FPPNumber</label>
 				<div class="col-sm-10">
 					<input id="FPPNum" type="text" th:field="*{FPPNum}" placeholder="0"/>
+					<input type="text" class="form-control" name="FPPNum" id="FPPNum" placeholder="0"/>
 				</div>
 		</div>
 		<div class="form-group">
 					<label for="MPPNum" class="col-sm-2 control-label">MPPNumber</label> 
 				<div class="col-sm-10">
 					<input id="MPPNum" type="text" th:field="*{MPPNum}" placeholder="0"/>
+					<input type="text" class="form-control" name="MPPNum" id="MPPNum" placeholder="0"/>
 				</div>
 		</div>
 		<div class="form-group">
 					<label for="startDate" class="col-sm-2 control-label">StartDate</label> 
 				<div class="col-sm-10">
 					<input id="startDate" type="date" th:field="*{startDate}" />
+					<input id="startDate" type="date" name="startDate" />
 				</div>
 		</div>		
 		<div class="form-group">
 					<label for="endDate" class="col-sm-2 control-label">EndDate</label> 
 				<div class="col-sm-10">
 					<input id="endDate" type="date" th:field="*{endDate}" />
+					<input id="endDate" type="date" name="endDate" />
 				</div>
 		</div>
 		<div class="form-group">
@@ -90,6 +98,7 @@
             </div>
         </div>
         </fieldset>
+        </div>
     </form>
 </div>
 </div>

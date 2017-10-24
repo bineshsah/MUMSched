@@ -39,6 +39,7 @@
    
 </div>
     <form class="form-horizontal"   th:action="@{/editblock}"  th:object="${block}" method="post">
+     <form class="form-horizontal"   th:action="@{/editblock}"  th:object="${block}" method="post">
         <input type="hidden" name="blockID" th:value="*{blockID}" />
         <div class="form-group">
             <label for="entryList" class="col-sm-2 control-label">EntryName</label> 

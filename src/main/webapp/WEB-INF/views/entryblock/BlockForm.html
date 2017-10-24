@@ -23,6 +23,7 @@
     <ol class="breadcrumb container">
         <li><a href="#" th:href="@{/}">Home</a></li>
         <li><a href="#" th:href="@{/schedule}">Schedule</a></li>
+        <li><a href="#" th:href="@{/}">Block</a></li>
     </ol>
 </header>
 
@@ -43,6 +44,15 @@
 	</form>
 	<br/>
 	<table class="table table-hover">
+<!-- <div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a href="/addBlock" th:href="@{/addBlock}" class="btn btn-info">add</a>
+    </div>
+</div> -->
+      <a href="#" th:href="@{/addBlock}" class="btn btn-info btn-sm">
+          <span class="glyphicon glyphicon-plus-sign"></span> Create Block
+        </a>
+	<table class="table table-bordered table-striped">
 	<thead>
 		<tr>
 			<th>Entry Name</th>
@@ -50,9 +60,15 @@
 			<th>FPP Number</th>
 			<th>MPP Number</th>
 			<th>BLock Start Date</th>
+			<td>Entry Name</td>
+			<td>Block Name</td>
+			<td>FPP Number</td>
+			<td>MPP Number</td>
+			<td>BLock Start Date</td>
 			<th>Block End Date</th>
 			<th>Delete</th>
             <th>Edit</th>
+			<th>Action</th>
 		</tr>
 		 </thead>
         <tbody>
@@ -65,6 +81,20 @@
 			<td th:text="${block.endDate}"></td>
 			<td><a th:href="@{/deleteblock(blockID=${block.blockID})}">delete</a></td>
             <td><a th:href="@{/toEditblock(blockID=${block.blockID})}">edit</a></td>
+			<td><div class="dropdown">
+						<button type="button" class="btn dropdown-toggle"
+							id="dropdownMenu1" data-toggle="dropdown">
+							Action <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu"
+							aria-labelledby="dropdownMenu1">
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								th:href="@{/toEditblock(blockID=${block.blockID})}">Update</a></li>
+
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								th:href="@{/deleteblock(blockID=${block.blockID})}">Delete </a></li>
+						</ul>
+					</div></td>
 		</tr>
 		</tbody>
 	</table>	
@@ -74,6 +104,7 @@
         <a href="/addBlock" th:href="@{/addBlock}" class="btn btn-info">add</a>
     </div>
 </div>
+		
 </div>
 
 <footer th:replace="entryblock/layout :: footer">Footer</footer>

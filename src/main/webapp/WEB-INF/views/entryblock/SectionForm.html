@@ -23,6 +23,7 @@
     <ol class="breadcrumb container">
         <li><a href="#" th:href="@{/}">Home</a></li>
         <li><a href="#" th:href="@{/schedule}">Schedule</a></li>
+        <li><a href="#" th:href="@{/}">Section</a></li>
     </ol>
 </header>
 
@@ -43,6 +44,15 @@
 	</form>
 	<br/>
     <table class="table table-hover">
+   <!-- <div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a href="/addSection" th:href="@{/addSection}" class="btn btn-info">add</a>
+    </div>
+</div> -->
+ <a href="#" th:href="@{/addSection}" class="btn btn-info btn-sm">
+          <span class="glyphicon glyphicon-plus-sign"></span> Create Section
+        </a>
+    <table class="table table-bordered table-striped" id="table">
      <thead>
       <tr>
         <th>Entry</th>
@@ -53,6 +63,7 @@
         <th>Capacity</th>
         <th>Delete</th>
         <th>Edit</th>
+        <th>Action</th>
       </tr>
       </thead>
         <tbody>
@@ -65,6 +76,21 @@
         <td th:text="${section.capacity}"></td>
         <td><a th:href="@{/deleteentry(entryID=${entry.entryID})}">delete</a></td>
         <td><a th:href="@{/toEdit(entryID=${entry.entryID})}">edit</a></td>
+        <td><div class="dropdown">
+						<button type="button" class="btn dropdown-toggle"
+							id="dropdownMenu1" data-toggle="dropdown">
+							Action <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu"
+							aria-labelledby="dropdownMenu1">
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								th:href="@{/toEditsection(sectionID=${section.sectionID})}">Update</a></li>
+
+							<li role="presentation"><a role="menuitem" tabindex="-1" 
+								 th:href="@{/deletesection(sectionID=${section.sectionID})}" >Delete </a></li>
+								 <!-- th:href="@{/deletesection(sectionID=${section.sectionID})}" -->
+						</ul>
+					</div></td>
       </tr>
        </tbody>
     </table>
@@ -74,6 +100,7 @@
         <a href="/addSection" th:href="@{/addSection}" class="btn btn-info">add</a>
     </div>
 </div>
+		
 </div>
 
 <footer th:replace="entryblock/layout :: footer">Footer</footer>
