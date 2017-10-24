@@ -22,7 +22,6 @@
 <header th:insert="entryblock/layout :: header(~{ :: .breadcrumb})">
     <ol class="breadcrumb container">
         <li><a href="#" th:href="@{/}">Home</a></li>
-        <li><a href="#" th:href="@{/schedule}">Schedule</a></li>
         <li><a href="#" th:href="@{/}">Section</a></li>
     </ol>
 </header>
@@ -39,11 +38,6 @@
     </th:block>
    
 </div>
-    <form method="get" action="/block">
-		<button type="submit">Link to Add Block</button>
-	</form>
-	<br/>
-    <table class="table table-hover">
    <!-- <div class="form-group">
     <div class="col-sm-2 control-label">
         <a href="/addSection" th:href="@{/addSection}" class="btn btn-info">add</a>
@@ -61,8 +55,6 @@
          <th>Course</th>
         <th>Faculty</th>
         <th>Capacity</th>
-        <th>Delete</th>
-        <th>Edit</th>
         <th>Action</th>
       </tr>
       </thead>
@@ -74,8 +66,6 @@
          <td th:text="${section.courseName}"></td>
         <td th:text="${section.facultyName}"></td>
         <td th:text="${section.capacity}"></td>
-        <td><a th:href="@{/deleteentry(entryID=${entry.entryID})}">delete</a></td>
-        <td><a th:href="@{/toEdit(entryID=${entry.entryID})}">edit</a></td>
         <td><div class="dropdown">
 						<button type="button" class="btn dropdown-toggle"
 							id="dropdownMenu1" data-toggle="dropdown">
@@ -95,11 +85,6 @@
        </tbody>
     </table>
    </div>
-		<div class="form-group">
-    <div class="col-sm-2 control-label">
-        <a href="/addSection" th:href="@{/addSection}" class="btn btn-info">add</a>
-    </div>
-</div>
 		
 </div>
 
