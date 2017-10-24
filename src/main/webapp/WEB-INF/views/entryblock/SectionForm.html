@@ -22,7 +22,7 @@
 <header th:insert="entryblock/layout :: header(~{ :: .breadcrumb})">
     <ol class="breadcrumb container">
         <li><a href="#" th:href="@{/}">Home</a></li>
-        <li><a href="#" th:href="@{/schedule}">Section</a></li>
+        <li><a href="#" th:href="@{/schedule}">Schedule</a></li>
     </ol>
 </header>
 
@@ -38,27 +38,24 @@
     </th:block>
    
 </div>
-    <a href="#" th:href="@{/addSection}" class="btn btn-info btn-sm">
-          <span class="glyphicon glyphicon-plus-sign"></span> AddSction
-        </a>
- <br/>
-    <table class="table table-bordered table-striped">
+    <form method="get" action="/block">
+		<button type="submit">Link to Add Block</button>
+	</form>
+	<br/>
+    <table class="table table-hover">
      <thead>
       <tr>
-        <td>Entry</td>
-        <td>Block</td>
-        <td>Track</td>
-         <td>Course</td>
-        <td>Faculty</td>
-        <td>Capacity</td>
-        <td>Delete</td>
-        <td>Edit</td>
+        <th>Entry</th>
+        <th>Block</th>
+        <th>Track</th>
+         <th>Course</th>
+        <th>Faculty</th>
+        <th>Capacity</th>
+        <th>Delete</th>
+        <th>Edit</th>
       </tr>
       </thead>
         <tbody>
-         <tr th:if="${sectionList.empty}">
-                <td colspan="8">No section</td>
-         </tr>
       <tr th:each="section : ${sectionList}">
         <td th:text="${section.entryName}"></td>
         <td th:text="${section.blockName}"></td>
@@ -72,7 +69,10 @@
        </tbody>
     </table>
    </div>
-  <div class="form-group">
+		<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a href="/addSection" th:href="@{/addSection}" class="btn btn-info">add</a>
+    </div>
 </div>
 </div>
 
