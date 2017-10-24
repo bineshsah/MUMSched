@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--/* Title of this template will be passed to the head fragment along with custom links and scripts */-->
+<head th:replace="entryblock/layout :: head(~{this :: title}, ~{this :: .custom-link}, ~{this :: .custom-script})">
+    <title>Schedule List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
+    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}"/>
+    
+    <!-- Custom links for this page only -->
+    <link class="custom-link" href="../../../resources/css/task/task.css" th:href="@{/resources/css/task/task.css}" />
+    
+    <script src="../../../resources/js/jquery.min.js" th:src="@{/resources/js/jquery.min.js}"></script>
+    <script src="../../../resources/js/bootstrap.min.js" th:src="@{/resources/js/bootstrap.min.js}"></script>
+
+    <!-- Custom scripts for this page only -->
+    <script class="custom-script" src="../../../resources/js/task/task.js" th:src="@{/resources/js/task/task.js}"></script>
+</head>
+<body>
+
+<!--/* The element with breadcrumb class will be passed to the header fragment */-->
+<header th:insert="entryblock/layout :: header(~{ :: .breadcrumb})">
+    <ol class="breadcrumb container">
+        <li><a href="#" th:href="@{/}">Home</a></li>
+        <li><a href="#" th:href="@{/schedule}">Schedule</a></li>
+    </ol>
+</header>
+
+<!--/* Insert content fragment with content of the element with id = 'task-list' */-->
+<div th:insert="entryblock/layout :: content(~{ :: #section-update})">
+ 
+    <div id="section-update">
+   <div class="container">
+    <!-- /* Handle the flash message */-->
+    <th:block th:if="${message != null}">
+        <!-- /* The message code is returned from the @Controller */ -->
+        <div th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
+    </th:block>
+   
+</div>
+   <form class="form-horizontal" action="#" th:action="@{/editsection}" th:object="${section}"
+			method="post">	
+	  <input type="hidden" name="sectionID" th:value="*{sectionID}" />
+      <div class="form-group">
+            <label for="entryName" class="col-sm-2 control-label">Entry-Block</label>
+             <div class="col-sm-10">
+            <select
+						th:field="*{entryName}">
+						<option value="select">Select</option>
+						<option th:each="entryName : ${entryNameList}" th:value="${entryName}"
+							th:text="${entryName}"></option>
+					</select>
+					</div>
+        </div>
+         <div class="form-group">
+            <label for="courseName" class="col-sm-2 control-label">Course</label>
+            <div class="col-sm-10">
+            <select
+						th:field="*{courseName}">
+						<option value="select">Select</option>
+						<option th:each="courseName : ${courseNameList}" th:value="${courseName}"
+							th:text="${courseName}"></option>
+					</select>
+					</div>
+        </div>
+        <div class="form-group">
+            <label for="facultyName" class="col-sm-2 control-label">Faculty</label>
+            <div class="col-sm-10">
+            <select
+						th:field="*{facultyName}">
+						<option value="select">Select</option>
+						<option th:each="facultyName : ${facultyNameList}" th:value="${facultyName}"
+							th:text="${facultyName}"></option>
+					</select>
+					</div>
+        </div>
+        <div class="form-group">
+            <label for="track" class="col-sm-2 control-label">Tack</label>
+            <div class="col-sm-10">
+                <select
+						th:field="*{track}">
+						 <option value="MPP">MPP</option>
+                  <option value="FPP">FPP</option>
+                   <option value="US">US</option>
+					</select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="capacity" class="col-sm-2 control-label">Capacity</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="capacity"  id="capacity" th:field="*{capacity}" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 control-label">
+                <input type="submit" value="Save" class="btn btn-info" />
+                &nbsp; &nbsp; &nbsp;
+            </div>
+        </div> 
+    </form>
+</div>
+</div>
+
+<footer th:replace="entryblock/layout :: footer">Footer</footer>
+</body>
+</html>
