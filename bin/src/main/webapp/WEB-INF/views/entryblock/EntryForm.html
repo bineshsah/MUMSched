@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--/* Title of this template will be passed to the head fragment along with custom links and scripts */-->
+<head th:replace="entryblock/layout :: head(~{this :: title}, ~{this :: .custom-link}, ~{this :: .custom-script})">
+    <title>Schedule List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
+    <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}"/>
+    
+    <!-- Custom links for this page only -->
+    <link class="custom-link" href="../../../resources/css/task/task.css" th:href="@{/resources/css/task/task.css}" />
+    
+    <script src="../../../resources/js/jquery.min.js" th:src="@{/resources/js/jquery.min.js}"></script>
+    <script src="../../../resources/js/bootstrap.min.js" th:src="@{/resources/js/bootstrap.min.js}"></script>
+
+    <!-- Custom scripts for this page only -->
+    <script class="custom-script" src="../../../resources/js/task/task.js" th:src="@{/resources/js/task/task.js}"></script>
+</head>
+<body>
+
+<!--/* The element with breadcrumb class will be passed to the header fragment */-->
+<header th:insert="entryblock/layout :: header(~{ :: .breadcrumb})">
+    <ol class="breadcrumb container">
+        <li><a href="#" th:href="@{/}">Home</a></li>
+        <li><a href="#" th:href="@{/schedule}">Schedule</a></li>
+    </ol>
+</header>
+
+<!--/* Insert content fragment with content of the element with id = 'task-list' */-->
+<div th:insert="entryblock/layout :: content(~{ :: #entry-list})">
+ 
+    <div id="entry-list">
+   <div class="container">
+    <!-- /* Handle the flash message */-->
+    <th:block th:if="${message != null}">
+        <!-- /* The message code is returned from the @Controller */ -->
+        <div th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
+    </th:block>
+   
+</div>
+    <form method="get" action="/block">
+		<button type="submit">Link to Add Block</button>
+	</form>
+	<br/>
+    <table class="table table-hover">
+     <thead>
+      <tr>
+        <th>Entry Name</th>
+        <th>FPP Number</th>
+        <th>MPP Number</th>
+         <th>Start Date</th>
+        <th>End Date</th>
+        <th>Delete</th>
+        <th>Edit</th>
+      </tr>
+      </thead>
+        <tbody>
+      <tr th:each="entry : ${entryList}">
+        <td th:text="${entry.entryName}"></td>
+        <td th:text="${entry.FPPNum}"></td>
+        <td th:text="${entry.MPPNum}"></td>
+         <td th:text="${entry.startDate}"></td>
+        <td th:text="${entry.endDate}"></td>
+        <td><a th:href="@{/deleteentry(entryID=${entry.entryID})}">delete</a></td>
+        <td><a th:href="@{/toEdit(entryID=${entry.entryID})}">edit</a></td>
+      </tr>
+       </tbody>
+    </table>
+   </div>
+		<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a href="/addEntry" th:href="@{/addEntry}" class="btn btn-info">add</a>
+    </div>
+</div>
+</div>
+
+<footer th:replace="entryblock/layout :: footer">Footer</footer>
+</body>
+</html>
