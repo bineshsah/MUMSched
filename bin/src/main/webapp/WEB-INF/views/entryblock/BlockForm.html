@@ -22,11 +22,7 @@
 <header th:insert="entryblock/layout :: header(~{ :: .breadcrumb})">
     <ol class="breadcrumb container">
         <li><a href="#" th:href="@{/}">Home</a></li>
-<<<<<<< HEAD
-        <li><a href="#" th:href="@{/}">Block</a></li>
-=======
-        <li><a href="#" th:href="@{/schedule}">Block</a></li>
->>>>>>> refs/remotes/origin/master
+        <li><a href="#" th:href="@{/schedule}">Schedule</a></li>
     </ol>
 </header>
 
@@ -42,44 +38,24 @@
     </th:block>
    
 </div>
-<<<<<<< HEAD
-<!-- <div class="form-group">
-    <div class="col-sm-2 control-label">
-        <a href="/addBlock" th:href="@{/addBlock}" class="btn btn-info">add</a>
-    </div>
-</div> -->
-      <a href="#" th:href="@{/addBlock}" class="btn btn-info btn-sm">
-          <span class="glyphicon glyphicon-plus-sign"></span> Create Block
-        </a>
-	<table class="table table-bordered table-striped">
-=======
-	<a href="#" th:href="@{/addBlock}" class="btn btn-info btn-sm">
-          <span class="glyphicon glyphicon-plus-sign"></span> AddBlock
-        </a>
+	<form method="get" action="/entry">
+		<button type="submit">Link to Add Entry</button>
+	</form>
 	<br/>
-    <table class="table table-bordered table-striped">
->>>>>>> refs/remotes/origin/master
+	<table class="table table-hover">
 	<thead>
 		<tr>
-			<td>Entry Name</td>
-			<td>Block Name</td>
-			<td>FPP Number</td>
-			<td>MPP Number</td>
-			<td>BLock Start Date</td>
-<<<<<<< HEAD
+			<th>Entry Name</th>
+			<th>Block Name</th>
+			<th>FPP Number</th>
+			<th>MPP Number</th>
+			<th>BLock Start Date</th>
 			<th>Block End Date</th>
-			<th>Action</th>
-=======
-			<td>Block End Date</td>
-			<td>Delete</td>
-            <td>Edit</td>
->>>>>>> refs/remotes/origin/master
+			<th>Delete</th>
+            <th>Edit</th>
 		</tr>
 		 </thead>
         <tbody>
-        <tr th:if="${blockList.empty}">
-                <td colspan="8">No block</td>
-         </tr>
 		<tr th:each="block : ${blockList}">
 			<td th:text="${block.entryName}"></td>
 			<td th:text="${block.blockName}"></td>
@@ -87,25 +63,17 @@
 			<td th:text="${block.MPPNum}"></td>
 			<td th:text="${block.startDate}"></td>
 			<td th:text="${block.endDate}"></td>
-			<td><div class="dropdown">
-						<button type="button" class="btn dropdown-toggle"
-							id="dropdownMenu1" data-toggle="dropdown">
-							Action <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" role="menu"
-							aria-labelledby="dropdownMenu1">
-							<li role="presentation"><a role="menuitem" tabindex="-1"
-								th:href="@{/toEditblock(blockID=${block.blockID})}">Update</a></li>
-
-							<li role="presentation"><a role="menuitem" tabindex="-1"
-								th:href="@{/deleteblock(blockID=${block.blockID})}">Delete </a></li>
-						</ul>
-					</div></td>
+			<td><a th:href="@{/deleteblock(blockID=${block.blockID})}">delete</a></td>
+            <td><a th:href="@{/toEditblock(blockID=${block.blockID})}">edit</a></td>
 		</tr>
 		</tbody>
 	</table>	
 	 </div>
-		
+		<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a href="/addBlock" th:href="@{/addBlock}" class="btn btn-info">add</a>
+    </div>
+</div>
 </div>
 
 <footer th:replace="entryblock/layout :: footer">Footer</footer>

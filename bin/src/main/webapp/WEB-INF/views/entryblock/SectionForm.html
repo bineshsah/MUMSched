@@ -22,11 +22,7 @@
 <header th:insert="entryblock/layout :: header(~{ :: .breadcrumb})">
     <ol class="breadcrumb container">
         <li><a href="#" th:href="@{/}">Home</a></li>
-<<<<<<< HEAD
-        <li><a href="#" th:href="@{/}">Section</a></li>
-=======
-        <li><a href="#" th:href="@{/schedule}">Section</a></li>
->>>>>>> refs/remotes/origin/master
+        <li><a href="#" th:href="@{/schedule}">Schedule</a></li>
     </ol>
 </header>
 
@@ -42,49 +38,24 @@
     </th:block>
    
 </div>
-<<<<<<< HEAD
-   <!-- <div class="form-group">
-    <div class="col-sm-2 control-label">
-        <a href="/addSection" th:href="@{/addSection}" class="btn btn-info">add</a>
-    </div>
-</div> -->
- <a href="#" th:href="@{/addSection}" class="btn btn-info btn-sm">
-          <span class="glyphicon glyphicon-plus-sign"></span> Create Section
-        </a>
-    <table class="table table-bordered table-striped" id="table">
-=======
-    <a href="#" th:href="@{/addSection}" class="btn btn-info btn-sm">
-          <span class="glyphicon glyphicon-plus-sign"></span> AddSction
-        </a>
- <br/>
-    <table class="table table-bordered table-striped">
->>>>>>> refs/remotes/origin/master
+    <form method="get" action="/block">
+		<button type="submit">Link to Add Block</button>
+	</form>
+	<br/>
+    <table class="table table-hover">
      <thead>
       <tr>
-<<<<<<< HEAD
         <th>Entry</th>
         <th>Block</th>
         <th>Track</th>
          <th>Course</th>
         <th>Faculty</th>
         <th>Capacity</th>
-        <th>Action</th>
-=======
-        <td>Entry</td>
-        <td>Block</td>
-        <td>Track</td>
-         <td>Course</td>
-        <td>Faculty</td>
-        <td>Capacity</td>
-        <td>Delete</td>
-        <td>Edit</td>
->>>>>>> refs/remotes/origin/master
+        <th>Delete</th>
+        <th>Edit</th>
       </tr>
       </thead>
         <tbody>
-         <tr th:if="${sectionList.empty}">
-                <td colspan="8">No section</td>
-         </tr>
       <tr th:each="section : ${sectionList}">
         <td th:text="${section.entryName}"></td>
         <td th:text="${section.blockName}"></td>
@@ -92,31 +63,17 @@
          <td th:text="${section.courseName}"></td>
         <td th:text="${section.facultyName}"></td>
         <td th:text="${section.capacity}"></td>
-        <td><div class="dropdown">
-						<button type="button" class="btn dropdown-toggle"
-							id="dropdownMenu1" data-toggle="dropdown">
-							Action <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" role="menu"
-							aria-labelledby="dropdownMenu1">
-							<li role="presentation"><a role="menuitem" tabindex="-1"
-								th:href="@{/toEditsection(sectionID=${section.sectionID})}">Update</a></li>
-
-							<li role="presentation"><a role="menuitem" tabindex="-1" 
-								 th:href="@{/deletesection(sectionID=${section.sectionID})}" >Delete </a></li>
-								 <!-- th:href="@{/deletesection(sectionID=${section.sectionID})}" -->
-						</ul>
-					</div></td>
+        <td><a th:href="@{/deleteentry(entryID=${entry.entryID})}">delete</a></td>
+        <td><a th:href="@{/toEdit(entryID=${entry.entryID})}">edit</a></td>
       </tr>
        </tbody>
     </table>
    </div>
-<<<<<<< HEAD
-		
-=======
-  <div class="form-group">
+		<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a href="/addSection" th:href="@{/addSection}" class="btn btn-info">add</a>
+    </div>
 </div>
->>>>>>> refs/remotes/origin/master
 </div>
 
 <footer th:replace="entryblock/layout :: footer">Footer</footer>
