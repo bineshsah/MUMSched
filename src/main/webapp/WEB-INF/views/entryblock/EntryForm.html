@@ -22,7 +22,7 @@
 <header th:insert="entryblock/layout :: header(~{ :: .breadcrumb})">
     <ol class="breadcrumb container">
         <li><a href="#" th:href="@{/}">Home</a></li>
-        <li><a href="#" th:href="@{/schedule}">Entry</a></li>
+        <li><a href="#" th:href="@{/schedule}">Schedule</a></li>
     </ol>
 </header>
 
@@ -38,26 +38,23 @@
     </th:block>
    
 </div>
-   <a href="#" th:href="@{/addEntry}" class="btn btn-info btn-sm">
-          <span class="glyphicon glyphicon-plus-sign"></span> AddEntry
-        </a>
+    <form method="get" action="/block">
+		<button type="submit">Link to Add Block</button>
+	</form>
 	<br/>
-    <table class="table table-bordered table-striped">
+    <table class="table table-hover">
      <thead>
       <tr>
-        <td>Entry Name</td>
-        <td>FPP Number</td>
-        <td>MPP Number</td>
-         <td>Start Date</td>
-        <td>End Date</td>
-        <td>Delete</td>
-        <td>Edit</td>
+        <th>Entry Name</th>
+        <th>FPP Number</th>
+        <th>MPP Number</th>
+         <th>Start Date</th>
+        <th>End Date</th>
+        <th>Delete</th>
+        <th>Edit</th>
       </tr>
       </thead>
         <tbody>
-        <tr th:if="${entryList.empty}">
-                <td colspan="7">No entry</td>
-         </tr>
       <tr th:each="entry : ${entryList}">
         <td th:text="${entry.entryName}"></td>
         <td th:text="${entry.FPPNum}"></td>
