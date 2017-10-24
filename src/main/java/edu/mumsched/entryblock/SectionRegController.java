@@ -3,7 +3,6 @@ package edu.mumsched.entryblock;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,7 +34,6 @@ public class SectionRegController {
 	public String module() {
 		return "section";
 	}
-	SectionRegController(BlockService blockService,EntryService entryService,SectionService sectionService){
 	SectionRegController(BlockService blockService,EntryService entryService,SectionService sectionService,CourseService courseService ,FacultyService facultyService){
 		this.blockService=blockService;
 		this.entryService=entryService;
@@ -56,17 +54,9 @@ public class SectionRegController {
     public String addSection(@ModelAttribute("newSection") Section section, Model model){
 		  List<String> entryNameList = new ArrayList<String>();
 			for (Entry entry : entryService.getAllEntry()) {
-				entryNameList.add(entry.getEntryName());
-			}
-			 List<String> blockNameList = new ArrayList<String>();
-			    for (Block block : blockService.getAllBlock()) {
-					blockNameList.add(block.getBlockName());
 				for (Block block : entry.getBlockList()) {
 					entryNameList.add(entry.getEntryName()+ " " +"-"+ " "+block.getBlockName());
 				}
-			  
-			 model.addAttribute("blockNameList", blockNameList);
-			model.addAttribute("entryNameList", entryNameList);
 			}
 		List<String> courseNameList = new ArrayList<String>();
 		for (Course course : courseService.getAllCourses()) {
@@ -82,9 +72,6 @@ public class SectionRegController {
     	    return "entryblock/addSection";
     }
 	@RequestMapping(value = { "/addnewsection" }, method = RequestMethod.POST)
-	public String registerNewBlock(@ModelAttribute("newSection") Section section, Model model ,BindingResult bindingResult) {
-//		Entry entry = entryService.getEntryByEntryName(block.getEntryName());
-//		entry.addBlock(block);
 	public String registerNewBlock(@ModelAttribute("newSection") Section section, BindingResult bindingResult) {
 //		System.out.println("section ============================"+section);
 		String [] arr = section.getEntryName().split(" ");

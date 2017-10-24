@@ -22,7 +22,6 @@
 <header th:insert="entryblock/layout :: header(~{ :: .breadcrumb})">
     <ol class="breadcrumb container">
         <li><a href="#" th:href="@{/}">Home</a></li>
-        <li><a href="#" th:href="@{/schedule}">Schedule</a></li>
         <li><a href="#" th:href="@{/}">Create Section</a></li>
     </ol>
 </header>
@@ -44,7 +43,6 @@
 			<fieldset>
 				<legend>Add New Section</legend>		
       <div class="form-group">
-            <label for="entryName" class="col-sm-2 control-label">Entry</label>
             <label for="entryName" class="col-sm-2 control-label">Entry-Block</label>
              <div class="col-sm-10">
             <select
@@ -55,29 +53,20 @@
 					</select>
 					</div>
         </div>
-        <div class="form-group">
-            <label for="blockName" class="col-sm-2 control-label" >Block</label>
-             <div class="col-sm-10">
          <div class="form-group">
             <label for="courseName" class="col-sm-2 control-label">Course</label>
             <div class="col-sm-10">
             <select
-						th:field="*{blockName}">
-						<option th:each="blockName : ${blockNameList}" th:value="${blockName}"
-							th:text="${blockName}"></option>
 						th:field="*{courseName}">
 						<option value="select">Select</option>
 						<option th:each="courseName : ${courseNameList}" th:value="${courseName}"
 							th:text="${courseName}"></option>
 					</select>
 					</div>
-        </div> 
         </div>
         <div class="form-group">
             <label for="facultyName" class="col-sm-2 control-label">Faculty</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="facultyName"  id="facultyName" th:field="*{facultyName}"/>
-            </div>
             <select
 						th:field="*{facultyName}">
 						<option value="select">Select</option>
