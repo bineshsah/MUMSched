@@ -80,7 +80,7 @@ public class Schedule{
 		this.scheduleStatus = scheduleStatus;
 	}
 	public Schedule createSchedule() {
-        return new Schedule(getEntryName(), "automatically generated", "Draft");
+        return new Schedule(getEntryName(), "Generated Automatically", "Draft");
 	}
 
 	@Override

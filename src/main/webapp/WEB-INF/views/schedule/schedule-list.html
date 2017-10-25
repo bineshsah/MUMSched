@@ -57,8 +57,7 @@
             </tr>
             <tr th:each="schedule : ${schedules}">
                 <td th:text="${schedule.entryName}"></td>
-                <td>
-                    <a href="#" th:href="@{/schedule/{id}(id=${schedule.scheduleID})}" th:text="${schedule.scheduleGeneratedAt}"></a>
+                <td  th:text="${schedule.scheduleGeneratedAt}">                   
                 </td>
                 <td th:text="${schedule.scheduleStatus}"></td>
                 <td>  

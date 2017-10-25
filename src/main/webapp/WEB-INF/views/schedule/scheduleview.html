@@ -45,9 +45,11 @@
             <thead>
             <tr>
                 <td>BLOCK</td>
-                <td>DATES</td>
+                <td>START DATE</td>
+                   <td>END DATE</td>
                 <td>MPP TRACK</td>
                 <td>FPP TRACK</td>
+                 <td>US TRACK</td>
             </tr>
             </thead>
             <tbody>
@@ -56,11 +58,11 @@
             </tr>
          -->    <tr th:each="schedule : ${scheduleGenLists}">
                 <td th:text="${schedule.blockName}"></td>
-                <td th:text="${schedule.fromDate}">
-                   
-                </td>
+                <td th:text="${schedule.fromDate}">    </td>
+                      <td th:text="${schedule.toDate}"></td>
                 <td th:text="${schedule.mppTrack}"></td>
                 <td th:text="${schedule.fppTrack}">  
+                  <td th:text="${schedule.usTrack}"> 
 						
  				</td>
             </tr>

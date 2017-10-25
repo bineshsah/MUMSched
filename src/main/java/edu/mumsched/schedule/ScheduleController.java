@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import edu.mumsched.entryblock.Entry;
+import edu.mumsched.entryblock.EntryService;
 import edu.mumsched.support.web.MessageHelper;
 
 /**
@@ -32,21 +34,15 @@ class ScheduleController {
 	
 	private final ScheduleService scheduleService;	
 	private final ScheduleGeneratedService scheduleGenService;
-	
-	Set<String> entryLists;
+	private final EntryService entryService;
 	
 
 	@Autowired
-	public ScheduleController(ScheduleService scheduleService,ScheduleGeneratedService scheduleGenService ) {		
+	public ScheduleController(ScheduleService scheduleService,ScheduleGeneratedService scheduleGenService,EntryService entryService ) {		
 		this.scheduleService = scheduleService;
 		this.scheduleGenService=scheduleGenService;
-		this.entryLists = new HashSet<String>();
-		this.entryLists.add("Jan");
-		this.entryLists.add("April");
-		this.entryLists.add("Aug");
-		this.entryLists.add("Oct");
-		this.entryLists.add("Nov");
-		this.entryLists.add("Dec");
+		this.entryService=entryService;
+		
 	}
 
 	@ModelAttribute("module")
@@ -56,7 +52,11 @@ class ScheduleController {
 
 	@RequestMapping(value = "createschedule", method = RequestMethod.GET)
 	public String scheduleForm(Model model, Schedule schedule) {
-		model.addAttribute("entryLists", entryLists);
+		List<String> entryNameList = new ArrayList<String>();
+			for (Entry entry : entryService.getAllEntry()) {
+				entryNameList.add(entry.getEntryName());
+			}
+		model.addAttribute("entryLists", entryNameList);
 		model.addAttribute("newSchedule", schedule);
 		return "schedule/createschedule";
 	}
@@ -106,7 +106,11 @@ class ScheduleController {
 			scheduleForm.setEntryName(schedule.getEntryName());
 			scheduleForm.setScheduleGeneratedAt(schedule.getScheduleGeneratedAt());
 			scheduleForm.setScheduleStatus(schedule.getScheduleStatus());
-			model.addAttribute("entryLists", entryLists);
+			List<String> entryNameList = new ArrayList<String>();
+			for (Entry entry : entryService.getAllEntry()) {
+				entryNameList.add(entry.getEntryName());
+			}
+			model.addAttribute("entryLists", entryNameList);
 			List<String> schedStatusList = new ArrayList<String>();
 			schedStatusList.add("Draft");
 			schedStatusList.add("Ok");

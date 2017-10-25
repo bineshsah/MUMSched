@@ -23,6 +23,7 @@ public class ScheduleGenerated {
 	private Date toDate;
 	private String mppTrack;
 	private String fppTrack;
+	private String usTrack;
 
 	@JoinColumn(name="scheduleID",nullable=false)
 	@ManyToOne(fetch=FetchType.EAGER)
@@ -33,15 +34,29 @@ public class ScheduleGenerated {
 		
 	}
 
-	public ScheduleGenerated(String blockName, Date fromDate, Date toDate, String mppTrack, String fppTrack) {
+	
+	
+	public ScheduleGenerated( String blockName, Date fromDate, Date toDate, String mppTrack, String fppTrack,
+			String usTrack) {
 		
 		this.blockName = blockName;
 		this.fromDate = fromDate;
 		this.toDate = toDate;
 		this.mppTrack = mppTrack;
 		this.fppTrack = fppTrack;
+		this.usTrack = usTrack;
 	}
-	
+
+
+
+	public String getUsTrack() {
+		return usTrack;
+	}
+
+	public void setUsTrack(String usTrack) {
+		this.usTrack = usTrack;
+	}
+
 	public Schedule getSchedule() {
 		return schedule;
 	}
